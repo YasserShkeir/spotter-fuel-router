@@ -1,0 +1,13 @@
+{
+  "venvPath": ".",
+  "venv": ".venv",
+  "include": ["."],
+  "exclude": [
+    ".venv",
+    "**/__pycache__",
+    "frontend/node_modules",
+    "frontend/dist"
+  ],
+  "typeCheckingMode": "off",
+  "reportMissingImports": "warning"
+}

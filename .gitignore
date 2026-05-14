@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+db.sqlite3
+.geocode_cache.json
+
+# Large precompute input — not needed at runtime, regenerable. The output
+# fuel_stations.json *is* committed so the app runs out of the box.
+cities500.txt
+cities500.zip

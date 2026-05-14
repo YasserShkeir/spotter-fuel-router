@@ -1,0 +1,23 @@
+# Render blueprint — one-click deploy on the free tier.
+# Import the repo at render.com → "New" → "Blueprint" and Render will read
+# this file and provision the service. Free tier sleeps after 15 min idle.
+services:
+  - type: web
+    name: spotter-fuel-router
+    runtime: python
+    plan: free
+    region: oregon
+    buildCommand: "pip install -r requirements.txt && python manage.py migrate --noinput"
+    startCommand: "gunicorn fuel_router.wsgi --bind 0.0.0.0:$PORT --workers 2 --timeout 30"
+    healthCheckPath: /healthz/
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.4
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_DEBUG
+        value: "false"
+      - key: DJANGO_ALLOWED_HOSTS
+        value: ".onrender.com"
+      - key: HTTP_USER_AGENT
+        value: "spotter-fuel-router/1.0 (shkeiryasser@gmail.com)"
